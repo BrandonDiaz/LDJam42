@@ -343,7 +343,7 @@ function spawnEntity(type) {
 	setTimeout(function () {
 		$('entity[type="warning"][x="' + x + '"][y="' + y + '"]').remove();
 		
-		map.find('#scene').append('<entity type="' + type + '" x="' + x + '" y="' + y + '" z="' + z + '"></entity>');
+		map.find('#scene').append('<entity class="' + (Math.random() >= 0.5 ? 'std' : 'alt') + '" type="' + type + '" x="' + x + '" y="' + y + '" z="' + z + '"></entity>');
 	}, 5500);
 }
 
