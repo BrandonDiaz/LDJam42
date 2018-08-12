@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>[REDUCE:REUSE]</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700" rel="stylesheet">
+		
+		<link href="styles/reset.css" type="text/css" rel="stylesheet" />
+		<link href="styles/animations.css" type="text/css" rel="stylesheet" />
+		<link href="styles/main.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<ul id="screens">
+			<li screen="menu">
+				<h1>[Reduce:<em>Reuse</em>]</h1>
+				<h2>#LDJam42</h2>
+				<span class="button">Begin Evaluation</span>
+				<span class="credit">Developed by Brandon Diaz in 48 hours for Ludum Dare 42, "Running Out of Space."</span>
+			</li>
+			<li screen="intro" class="inactive">
+				<p>"The greatest threat to our planet is the belief that someone else will save it."</p><span>- Robert Swan</span>
+			</li>
+			<li screen="game" class="inactive">
+				<div id="weight">0/75 lbs</div>
+				<div id="timer"></div>
+				<ul id="cargo"></ul>
+				<div id="map"><div id="scene"></div></div>
+				<div id="tips">
+					<span class="tip"></span>
+				</div>
+			</li>
+			<li screen="gameover" class="inactive">
+				<h3>Evaluation Complete</h3>
+				<ul class="scores">
+					<li id="points">
+						<span></span>
+						Units Processed
+					</li>
+					<li id="grade">
+						<span></span>
+						Final Grade
+					</li>
+					<li id="time">
+						<span></span>
+						Time Elapsed
+					</li>
+				</ul>
+				<p>Thank you for playing!</p>
+				<span class="button">Restart Evaluation</span>
+			</li>
+		</ul>
+
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="game/main.min.js"></script>
+	</body>
+</html>

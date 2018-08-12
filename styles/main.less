@@ -1,0 +1,622 @@
+@glass: #4c9c1a;
+@metal: #70868f;
+@plastic: #3396e2;
+
+@danger: #e95a39;
+
+html, body {
+	background: #44454e;
+	background: linear-gradient(#e4dfdd, #f4f2f0);
+	color: #44454e;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-size: 14px;
+	height: 100%;
+	overflow: hidden;
+}
+
+[screen] {
+	animation: fadeIn 5s forwards;
+	opacity: 0;
+	bottom: 0;
+	height: 400px;
+	left: 0;
+	margin: auto;
+	opacity: 1;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 600px;
+
+	&.inactive {
+		animation: none;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 1.5s linear;
+	}
+
+	&[screen="menu"] {
+		text-align: center;
+
+		h1 {
+			font-size: 55px;
+			font-weight: bold;
+			text-transform: uppercase;
+
+			em {
+				opacity: 0.75;
+			}
+		}
+
+		h2 {
+			font-size: 22px;
+			opacity: 0.5;
+			padding: 10px 0;
+		}
+
+		.button {
+			background: #669beb;
+			border-radius: 3px;
+			cursor: pointer;
+			color: #ffffff;
+			display: inline-block;
+			margin-top: 85px;
+			padding: 14px 20px;
+			transition: opacity 0.25s linear;
+
+			&:hover {
+				opacity: 0.75;
+			}
+		}
+
+		.credit {
+			bottom: 0;
+			left: 0;
+		    opacity: 0.33;
+			position: absolute;
+			right: 0;
+			text-align: center;
+		}
+	}
+
+	&[screen="intro"] {
+		text-align: center;
+
+		p {
+			font-size: 14px;
+			line-height: 22px;
+		}
+
+		span {
+			opacity: 0.5;
+			padding-top: 10px;
+		}
+	}
+
+	&[screen="game"] {
+		position: static;
+	}
+
+	&[screen="gameover"] {
+		text-align: center;
+
+		h3 {
+			font-size: 45px;
+			font-weight: bold;
+			text-transform: uppercase;
+			padding-bottom: 50px;
+		}
+
+		.scores {
+			li {
+				float: left;
+				width: 33%;
+
+				span {
+					display: block;
+					font-size: 30px;
+					font-weight: bold;
+					padding-bottom: 10px;
+				}
+			}
+		}
+
+		p {
+			display: block;
+			opacity: 0.5;
+			padding-top: 200px;
+		}
+
+		.button {
+			background: #669beb;
+			border-radius: 3px;
+			cursor: pointer;
+			color: #ffffff;
+			display: inline-block;
+			margin-top: 25px;
+			padding: 14px 20px;
+			transition: opacity 0.25s linear;
+
+			&:hover {
+				opacity: 0.75;
+			}
+		}
+	}
+}
+
+#timer {
+	background: #000000;
+    border-radius: 3px 3px 0 3px;
+	color: #ffffff;
+	font-size: 22px;
+	height: 24px;
+	min-width: 50px;
+    padding: 8px;
+    position: absolute;
+	right: 25%;
+    top: 75px;
+
+	&::after {
+		background: #000000;
+		border-top: none;
+		border-radius: 0 0 3px 3px;
+		color: #a2a2a2;
+		content: 'Elapsed';
+		font-size: 9px;
+		padding: 0 8px 8px 8px;
+		position: absolute;
+		right: 0;
+		text-transform: uppercase;
+		top: 40px;
+	}
+}
+
+#weight {
+	background: #000000;
+    border-radius: 3px;
+	color: #ffffff;
+	font-size: 22px;
+	height: 24px;
+	left: 0;
+	margin: auto;
+    padding: 8px;
+    position: absolute;
+	right: 0;
+	text-align: center;
+	transition: background 05s ease;
+    top: 75px;
+	width: 110px;
+
+	&.danger {
+		background: @danger;
+
+		&::after {
+			background: @danger;
+			color: rgba(255, 255, 255, 0.5);
+		}
+	}
+
+	&::after {
+		background: #000000;
+		border-top: none;
+		border-radius: 0 0 3px 3px;
+		color: #a2a2a2;
+		content: 'Max Weight';
+		font-size: 9px;
+		left: 0;
+		margin: auto;
+		padding: 0 8px 8px 8px;
+		position: absolute;
+		right: 0;
+		text-transform: uppercase;
+		transition: background 05s ease;
+		top: 40px;
+		width: 60px;
+	}
+}
+
+#cargo {
+	background: #000000;
+    border-radius: 3px 3px 3px 0;
+	height: 24px;
+    left: 25%;
+	min-width: 50px;
+    padding: 8px;
+    position: absolute;
+    top: 75px;
+
+	&::after {
+		background: #000000;
+		border-top: none;
+		border-radius: 0 0 3px 3px;
+		color: #a2a2a2;
+		content: 'Storage';
+		font-size: 9px;
+		left: 0;
+		padding: 0 8px 8px 8px;
+		position: absolute;
+		text-transform: uppercase;
+		top: 40px;
+	}
+
+	li {
+		float: left;
+		height: 24px;
+		margin-right: 8px;
+		width: 24px;
+
+		&:last-child {
+			animation: blink 1s infinite;
+			margin: 0;
+		}
+
+		&[type="trash-glass"] {
+			background: @glass url(../images/trash-glass.png) center center no-repeat;
+		}
+
+		&[type="trash-metal"] {
+			background: @metal url(../images/trash-metal.png) center center no-repeat;
+		}
+
+		&[type="trash-plastic"] {
+			background: @plastic url(../images/trash-plastic.png) center center no-repeat;
+		}
+	}
+}
+
+#tips {
+    .tip {
+	    animation: tip 12s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	    bottom: -50px;
+	    left: 0;
+	    margin: auto;
+	    position: absolute;
+	    right: 0;
+	    text-align: center;
+	    width: 700px;
+    }
+}
+
+#map {
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 150px;
+}
+
+#scene {
+	//background: #ffffff;
+	height: 100%;
+	position: relative;
+	transform: rotateX(40deg);
+	transform-style: preserve-3d;
+	width: 100%;
+
+	&::after {
+		background: url(../images/facility-bg.png) center center no-repeat;
+		bottom: -20px;
+		content: '';
+		left: -20px;
+		position: absolute;
+		right: -20px;
+		top: -20px;
+		z-index: -1;
+	}
+}
+
+entity {
+	animation: drop 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+	height: 48px;
+	position: absolute;
+	transition: left 150ms linear, top 150ms linear;
+	transform: translateZ(5px);
+	width: 48px;
+
+	&.highlighted {
+		&::before {
+			animation: warning 1s alternate infinite;
+			content: '';
+			height: 48px;
+			outline: 3px solid #ffffff;
+			position: absolute;
+			width: 48px;
+			z-index: 50;
+		}
+	}
+
+	&[type="warning"] {
+		animation: warning 1s 5 alternate, fadeOut 1s 4s forwards;
+		color: @danger;
+		font-size: 28px;
+		line-height: 48px;
+		outline: 3px solid @danger;
+		text-align: center;
+		z-index: 50;
+	}
+
+	&[type="drone"] {
+		animation: hover 3s alternate infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		transform-style: preserve-3d;
+		z-index: 9999;
+
+		&::after {
+			animation: shadow 3s alternate infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+			background: #425b6d;
+			border-radius: 100%;
+			box-shadow: 0 0 8px 5px #425b6d;
+			bottom: 0;
+			content: '';
+			height: 32px;
+			left: 0;
+			margin: auto;
+			opacity: 0.1;
+			position: absolute;
+			right: 0;
+			width: 32px;
+			z-index: 0;
+		}
+
+		&::before {
+			animation: spotlight 3s alternate infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+			background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.75);
+			content: '';
+			height: 48px;
+			opacity: 0.5;
+			position: absolute;
+			width: 48px;
+		}
+
+		&[facing="0"] {
+			&::before {
+				bottom: 100%;
+			}
+
+			.wrapper {
+				transform: rotateZ(180deg) rotateY(0deg) rotateX(0deg);
+			}
+		}
+
+		&[facing="1"] {
+			&::before {
+				left: 100%;
+			}
+
+			.wrapper {
+				transform: rotateZ(-90deg) rotateY(0deg) rotateX(0deg);
+			}
+		}
+
+		&[facing="2"] {
+			&::before {
+				top: 100%;
+			}
+
+			.wrapper {
+				transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg);
+			}
+		}
+
+		&[facing="3"] {
+			&::before {
+				right: 100%;
+			}
+
+			.wrapper {
+				transform: rotateZ(90deg) rotateY(0deg) rotateX(0deg);
+			}
+		}
+
+		.wrapper {
+			height: 48px;
+			position: relative;
+			transform-origin: center;
+			transform-style: preserve-3d;
+			transition: transform 150ms linear;
+			width: 48px;
+			z-index: 999;
+		}
+
+		.back {
+			background: url(../images/drone-back.png) center center no-repeat;
+			height: 24px;
+			left: 4px;
+			position: absolute;
+			top: 12px;
+			transform: rotateX(90deg) translateZ(24px);
+			width: 40px;
+		}
+
+		.top {
+			background: url(../images/drone-top.png) center center no-repeat;
+			height: 48px;
+			left: 4px;
+			position: absolute;
+			transform: rotateY(0deg) translateZ(12px);
+			width: 40px;
+		}
+
+		.front {
+			background: url(../images/drone-front.png) center center no-repeat;
+			height: 24px;
+			left: 4px;
+			position: absolute;
+			top: 12px;
+			transform: rotateX(90deg) translateZ(-24px);
+			width: 40px;
+
+			&::after {
+				animation: eye 1s alternate infinite;
+				background: red;
+				border-radius: 100%;
+				content: '';
+				height: 7px;
+				position: absolute;
+				right: 9px;
+				top: 14px;
+				width: 7px;
+			}
+		}
+
+		.right {
+			background: url(../images/drone-side.png) center center no-repeat;
+			height: 48px;
+			left: 12px;
+			position: absolute;
+			transform: rotateY(90deg) translateZ(20px);
+			transform-style: preserve-3d;
+			width: 24px;
+
+			&::after {
+				background: url(../images/drone-arm.png) center center no-repeat;
+				content: '';
+				height: 8px;
+				left: 0;
+				position: absolute;
+				top: 14px;
+				transform: rotateY(90deg) translateX(-11px);
+				width: 22px;
+			}
+
+			&::before {
+				animation: rotors 45ms alternate-reverse infinite;
+				background: #44454e;
+				border-radius: 100%;
+				content: '';
+				height: 42px;
+				left: -23px;
+				opacity: 0.1;
+				position: absolute;
+				top: 14px;
+				transform: rotateY(90deg) translateY(-17px) translateX(-19px);
+				width: 42px;
+			}
+		}
+
+		.left {
+			background: url(../images/drone-side.png) center center no-repeat;
+			height: 48px;
+			left: 12px;
+			position: absolute;
+			transform: rotateY(-90deg) translateZ(20px);
+			transform-style: preserve-3d;
+			width: 24px;
+
+			&::after {
+				background: url(../images/drone-arm.png) center center no-repeat;
+				content: '';
+				height: 8px;
+				left: 0;
+				position: absolute;
+				top: 14px;
+				transform: rotateY(90deg) translateX(-11px);
+				width: 22px;
+			}
+
+			&::before {
+				animation: rotors 45ms alternate-reverse infinite;
+				background: #44454e;
+				border-radius: 100%;
+				content: '';
+				height: 42px;
+				left: 6px;
+				opacity: 0.1;
+				position: absolute;
+				top: 14px;
+				transform: rotateY(90deg) translateY(-17px) translateX(-19px);
+				width: 42px;
+			}
+		}
+	}
+
+	&[type="facility-glass"] {
+		background: url(../images/facility-base.png) center center no-repeat;
+
+		&::after {
+			background: @glass;
+			content: '';
+			height: 9px;
+			left: 0;
+			margin: auto;
+			right: 0;
+			position: absolute;
+			top: 3px;
+			width: 11px;
+		}
+	}
+
+	&[type="trash-glass"] {
+		background: url(../images/trash-glass.png) center center no-repeat;
+		border-radius: 100%;
+
+		&:nth-of-type(2n) {
+			background: url(../images/trash-glass-alt.png) center center no-repeat;
+		}
+	}
+
+	&[type="facility-metal"] {
+		background: url(../images/facility-base.png) center center no-repeat;
+
+		&::after {
+			background: @metal;
+			content: '';
+			height: 9px;
+			left: 0;
+			margin: auto;
+			right: 0;
+			position: absolute;
+			top: 3px;
+			width: 11px;
+		}
+	}
+
+	&[type="trash-metal"] {
+		background: url(../images/trash-metal.png) center center no-repeat;
+		border-radius: 100%;
+
+		&:nth-of-type(2n) {
+			background: url(../images/trash-metal-alt.png) center center no-repeat;
+		}
+	}
+
+	&[type="facility-plastic"] {
+		background: url(../images/facility-base.png) center center no-repeat;
+
+		&::after {
+			background: @plastic;
+			content: '';
+			height: 9px;
+			left: 0;
+			margin: auto;
+			right: 0;
+			position: absolute;
+			top: 3px;
+			width: 11px;
+		}
+	}
+
+	&[type="trash-plastic"] {
+		background: url(../images/trash-plastic.png) center center no-repeat;
+		border-radius: 100%;
+
+		&:nth-of-type(2n) {
+			background: url(../images/trash-plastic-alt.png) center center no-repeat;
+		}
+	}
+
+	.generate-coords(30);
+}
+
+.generate-coords(@n, @i: 0) when (@i =< @n) {
+	&[x="@{i}"] {
+		left: (@i * 48px);
+	}
+	&[y="@{i}"] {
+		top: (@i * 48px);
+		z-index: (@i + 1);
+	}
+	&[z="@{i}"] {
+		transform: translateZ((@i * 5px));
+	}
+	.generate-coords(@n, (@i + 1));
+}
