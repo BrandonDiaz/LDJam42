@@ -465,7 +465,7 @@ entity[type="trash-glass"] {
   background: url(../images/trash-glass.png) center center no-repeat;
   border-radius: 100%;
 }
-entity[type="trash-glass"]:nth-of-type(2n) {
+entity[type="trash-glass"]:nth-child(2n) {
   background: url(../images/trash-glass-alt.png) center center no-repeat;
 }
 entity[type="facility-metal"] {
@@ -486,7 +486,7 @@ entity[type="trash-metal"] {
   background: url(../images/trash-metal.png) center center no-repeat;
   border-radius: 100%;
 }
-entity[type="trash-metal"]:nth-of-type(2n) {
+entity[type="trash-metal"]:nth-child(2n) {
   background: url(../images/trash-metal-alt.png) center center no-repeat;
 }
 entity[type="facility-plastic"] {
@@ -507,7 +507,7 @@ entity[type="trash-plastic"] {
   background: url(../images/trash-plastic.png) center center no-repeat;
   border-radius: 100%;
 }
-entity[type="trash-plastic"]:nth-of-type(2n) {
+entity[type="trash-plastic"]:nth-child(2n) {
   background: url(../images/trash-plastic-alt.png) center center no-repeat;
 }
 entity[x="0"] {
